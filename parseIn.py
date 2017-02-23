@@ -1,14 +1,6 @@
 
-from os import listdir
-
-inputPath = "in/"
-inputFiles = listdir(inputPath)
-
-# Contains the input data as { fileName: data }
-parsedInputs = {}
-
 # Takes in a string and returns the data represented by that string
-def parseInput(file):
+def parseIn(file):
     # Read header
     video_count, endpoint_count, requests, cache_count, cache_size = split_line(file.readline())
 
@@ -20,7 +12,7 @@ def parseInput(file):
 
     # Sanity check size
     if len(video_sizes) != int(video_count):
-        print("Header not match read videos.")
+        print("Header video count does not match read videos.")
 
     data['videos'] = list(map(int, video_sizes))
 
@@ -55,10 +47,13 @@ def read_request(file, data):
 def split_line(line):
     return line.split(" ")
 
-for fileName in inputFiles:
-    print("Parsing " + fileName)
-    file = open(inputPath + fileName, "r")
-    parsedInputs[fileName.split(".")[0]] = parseInput(file)
+def getParsedInputs(files):
+    # Contains the input data as { fileName: data }
+    parsedInputs = {}
 
-def getParsedInputs():
+    for fileName in files:
+        print("Parsing " + fileName)
+        file = open(fileName, "r")
+        parsedInputs[fileName.split(".")[0]] = parseInput(file)
+
     return parsedInputs
