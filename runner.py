@@ -4,7 +4,7 @@ from os import listdir
 processors = {
     'default': code,
     'zero': zero,
-    'mpot': pot,
+    'pot': pot,
     'jb': jb
 }
 
