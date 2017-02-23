@@ -1,5 +1,3 @@
-outputPath = "out/"
-
 
 # Takes in data and returns a string representing that data
 def parseOutput(output):
@@ -15,6 +13,7 @@ def parseOutput(output):
 
 def parseOutputs(outputs):
     for name, output in outputs.items():
-        file = open(outputPath + name + ".out", "w")
+        outputName = name.replace("in/", "out/")
+        file = open(outputName + ".out", "w")
         file.write(parseOutput(output))
         file.close()
